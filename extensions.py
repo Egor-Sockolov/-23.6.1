@@ -2,7 +2,7 @@ import requests
 import json
 from config import keys
 
-class APIException(Exception):  # Класс отлова ошибок
+class APIException(Exception): 
     pass
 
 class CryptoConverter:
