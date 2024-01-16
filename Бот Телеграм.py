@@ -14,7 +14,6 @@ def start(message: telebot.types.Message):
     markup.add(btn1)
     bot.send_message(message.chat.id, f"Я умею конвертировать некоторые валюты. Для начала ознакомься с тем что я умею c помощью команды /help", reply_markup=markup)
 
-# Обрабатываются все сообщения, содержащие команды '/start' or '/help'.
 @bot.message_handler(commands=['help'])
 def help(message: telebot.types.Message):
     text = 'Чтобы воспроизвести конвертацию отправь мне данные в следующем формате: \n<Имя валюты, цену которой ты хочешь узнать> \
@@ -26,17 +25,12 @@ def help(message: telebot.types.Message):
     markup.add(btv1)
     bot.send_message(message.chat.id, f'Для ознакомления с списков валют используй команду /values', reply_markup=markup)
 
-
-# Вывод всех доступных валют построчно
 @bot.message_handler(commands=['values'])
 def values(message: telebot.types.Message):
     text = 'Доступные валюты'
     for key in keys.keys():
         text = '\n'.join((text, key,))
     bot.reply_to(message, text)
-
-# стоимость одного Биткоина в Долларах
-# fsym=BTC&tsym=USD
 
 @bot.message_handler(content_types=['text', ])
 def convert(message: telebot.types.Message):
